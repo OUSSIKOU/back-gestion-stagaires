@@ -1,0 +1,12 @@
+const express = require("express");
+const controllersChat = require("../controllers/chat");
+const auth = require("../middelware/auth");
+const parse = express();
+const router = express.Router();
+parse.use(express.json());
+router.post("", auth, controllersChat.createChat);
+router.get("", auth, controllersChat.getAllChats);
+router.get("/:id", auth, controllersChat.getById);
+router.put("/:chatId", auth, controllersChat.updateChat);
+router.delete("/:chatId", auth, controllersChat.deleteChat);
+module.exports = router;

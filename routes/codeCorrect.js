@@ -1,0 +1,12 @@
+const express = require('express');
+const controllersCodeCorrect = require('../controllers/codeCorrect');
+const auth = require('../middelware/auth');
+const parse = express();
+const router = express.Router();
+parse.use(express.json());
+router.post('',auth,controllersCodeCorrect.createCodeCorrect);
+router.get('', auth ,controllersCodeCorrect.getAllCodeCorrects);
+router.get('/:id', auth , controllersCodeCorrect.getById );
+router.put('/:codeCorrectId', auth , controllersCodeCorrect.updateCodeCorrect);
+router.delete('/:codeCorrectId', auth , controllersCodeCorrect.deleteCodeCorrect);
+module.exports = router;

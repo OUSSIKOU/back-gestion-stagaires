@@ -1,0 +1,12 @@
+const express = require('express');
+const controllersAudit = require('../controllers/audit');
+const auth = require('../middelware/auth');
+const parse = express();
+const router = express.Router();
+parse.use(express.json());
+router.post('',auth,controllersAudit.createAudit);
+router.get('', auth ,controllersAudit.getAllAudits);
+router.get('/:id', auth , controllersAudit.getById );
+router.put('/:auditId', auth , controllersAudit.updateAudit);
+router.delete('/:auditId', auth , controllersAudit.deleteAudit);
+module.exports = router;

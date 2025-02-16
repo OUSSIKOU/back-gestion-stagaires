@@ -1,0 +1,12 @@
+const express = require("express");
+const controllersAi = require("../controllers/ai");
+const auth = require("../middelware/auth");
+const parse = express();
+const router = express.Router();
+parse.use(express.json());
+router.post("", auth, controllersAi.createAi);
+router.get("", auth, controllersAi.getAllAis);
+router.get("/:id", auth, controllersAi.getById);
+router.put("/:aiId", auth, controllersAi.updateAi);
+router.delete("/:aiId", auth, controllersAi.deleteAi);
+module.exports = router;
